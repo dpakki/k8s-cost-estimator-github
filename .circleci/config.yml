@@ -10,4 +10,13 @@ workflows:
   welcome:
     # Run the welcome/run job in its own container
     jobs:
-      - welcome/run
+      - welocome:
+        filters:
+            branches:
+              only:
+                - master
+
+jobs:
+  welocome: 
+    steps:
+      -run: "welcome"
