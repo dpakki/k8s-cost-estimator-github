@@ -10,16 +10,20 @@ workflows:
   welcome:
     jobs:
       - welocome_job:
-          filters:
-            branches:
-              only:
-                - master
-                - dev
+        docker:
+          - image: google/cloud-sdk
+        steps:
+          - checkout
+          - run: apt-get -y install python3
+          # filters:
+          #   branches:
+          #     only:
+          #       - dev
 
-jobs:
-  welocome_job:
-    docker:
-      - image: google/cloud-sdk
-    steps:
-      - checkout
-      - run: apt-get -y install python3
+# jobs:
+#   welocome_job:
+#     docker:
+#       - image: google/cloud-sdk
+#     steps:
+#       - checkout
+#       - run: apt-get -y install python3
