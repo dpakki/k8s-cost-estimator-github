@@ -21,4 +21,4 @@ jobs:
       - image: google/cloud-sdk
     steps:
       - checkout
-      - run: apt-get -y install python3
+      - run: apt-get -y install python33
