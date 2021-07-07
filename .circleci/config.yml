@@ -17,12 +17,11 @@ jobs:
   cost_estimation:
     executor: gcloud/gcloud 
     docker:
-      - image: google/cloud-sdk # us.gcr.io/techstack-standard-industries/docker-repo/k8s-cost-estimator:v0.0.1
+      - image: google/cloud-sdk
     steps:
       - checkout
       - setup_remote_docker:
           version: 19.03.13
-          # docker_layer_caching: true
       - run:
           name: "Get GCR credentials"
           command: |
