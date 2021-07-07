@@ -15,7 +15,7 @@ workflows:
                 - dev
 jobs:
   cost_estimation:
-    executor: gcloud/gcloud 
+    executor: gcloud/gcloud
     docker:
       - image: google/cloud-sdk
     steps:
