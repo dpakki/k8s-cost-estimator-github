@@ -30,7 +30,7 @@ jobs:
             gcloud auth activate-service-account --key-file=/key.json
             gcloud config set project techstack-standard-industries
       - run: gcloud auth configure-docker
-      - run: docker images # pull us.gcr.io/techstack-standard-industries/docker-repo/k8s-cost-estimator:v0.0.1
+      - run: docker pull us.gcr.io/techstack-standard-industries/docker-repo/k8s-cost-estimator:v0.0.1
 
           # name: Cost estimation 
           # command: |
