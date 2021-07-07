@@ -1,4 +1,7 @@
 version: 2.1
+orbs:
+  gcloud: travelaudience/gcloud@0.1.1
+  
 workflows:
   cost-estimation:
     jobs:
