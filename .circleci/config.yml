@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
-  gcloud: travelaudience/gcloud@0.1.1
+  gcloud:  travelaudience/gcloud@0.1.1
+  gcp-gcr: circleci/gcp-gcr@0.6.1
 
 workflows:
   cost-estimation:
@@ -26,8 +27,13 @@ jobs:
             echo $TECHSTACK_EDITOR > /key.json
             gcloud auth activate-service-account --key-file=/key.json
             gcloud config set project techstack-standard-industries
-      - run: gcloud auth configure-docker --quiet --project techstack-standard-industries     
-      - run: docker pull us.gcr.io/techstack-standard-industries/docker-repo/k8s-cost-estimator:v0.0.1
+      - run: gcloud auth configure-docker --quiet --project techstack-standard-industries
+      - gcp-gcr/pull-image:
+          google-project-id: techstack-standard-industries
+          registry-url: us.gcr.io
+          image: techstack-standard-industries/docker-repo/k8s-cost-estimator
+          tag: v0.0.1
+      # - run: docker pull us.gcr.io/techstack-standard-industries/docker-repo/k8s-cost-estimator:v0.0.1
 
           # name: Cost estimation 
           # command: |
