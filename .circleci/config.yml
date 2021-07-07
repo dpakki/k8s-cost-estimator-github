@@ -14,7 +14,7 @@ workflows:
             branches:
               only:
                 - master
-                # - dev
+                - dev
 jobs:
   welocome_job:
     docker:
