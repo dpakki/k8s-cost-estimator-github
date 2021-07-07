@@ -10,10 +10,10 @@ workflows:
   welcome:
     jobs:
       - welocome_job:
-          # filters:
-          #   branches:
-          #     only:
-          #       - master
+          filters:
+            branches:
+              only:
+                - master
 
 jobs:
   welocome_job:
