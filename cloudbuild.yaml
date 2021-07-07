@@ -1,6 +1,6 @@
 steps:
 
-- name: us-central1-docker.pkg.dev/techstack-standard-industries/docker-repo/k8s-cost-estimator:v0.0.1
+- name: us.gcr.io/techstack-standard-industries/docker-repo/k8s-cost-estimator:v0.0.1
   entrypoint: 'bash'
   args: 
     - '-c'

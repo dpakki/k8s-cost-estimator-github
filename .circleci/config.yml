@@ -8,15 +8,17 @@ orbs:
 workflows:
   # Name the workflow "welcome"
   welcome:
-    # Run the welcome/run job in its own container
     jobs:
-      - welocome:
-        filters:
+      - welocome_job:
+          filters:
             branches:
               only:
                 - master
 
 jobs:
-  welocome: 
+  welocome_job:
+    docker:
+      - image: google/cloud-sdk
     steps:
-      -run: "welcome"
+      - checkout
+      - run: apt-get -y install python3
