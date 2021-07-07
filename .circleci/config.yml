@@ -15,7 +15,7 @@ workflows:
                 - dev
 jobs:
   cost_estimation:
-    executor: gcloud/gcloud
+    executor: gcloud/gcloud 
     docker:
       - image: google/cloud-sdk # us.gcr.io/techstack-standard-industries/docker-repo/k8s-cost-estimator:v0.0.1
     steps:
