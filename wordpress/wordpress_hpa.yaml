@@ -7,7 +7,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: wordpress
-  minReplicas: 5
+  minReplicas: 6
   maxReplicas: 10
   metrics:
   - type: Resource
