@@ -15,17 +15,13 @@ workflows:
                 - dev
 jobs:
   cost_estimation:
-    # executor: gcloud/gcloud 
     docker:
       - image: dpakki95/k8s-cost-estimator:v0.0.2
         auth:
           username: dpakki95
-          password: 7JN63r6TNpcm2heT  # context / project UI env-var reference
+          password: 7JN63r6TNpcm2heT
     steps:
       - checkout
-      # - setup_remote_docker:
-      #     version: 19.03.13
-
       - run:
           name: Cost estimation 
           command: |
