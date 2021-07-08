@@ -53,8 +53,8 @@ jobs:
             echo "** Updating Pull Request ${CIRCLE_PULL_REQUEST##*/} ..."
             echo "***************************************************************************************************************"
             createObject() {
-              url=$$1
-              body=$$2
+              url=$1
+              body=$2
 
               echo $url
               echo $body
@@ -75,7 +75,7 @@ jobs:
 
             comments_url="https://api.github.com/repos/dpakki/k8s-cost-estimator-github/issues/${CIRCLE_PULL_REQUEST##*/}/comments"
             comments_body="$(cat output.json)"
-            createObject $$comments_url "$$comments_body"
+            createObject $comments_url "$comments_body"
 
           #   COST_USD_THRESHOLD=$_GITHUB_FINOPS_COST_USD_THRESHOLD
           #   POSSIBLY_COST_INCREASE=$(cat output.diff | jq ".summary.maxDiff.usd")
