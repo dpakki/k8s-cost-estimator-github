@@ -41,41 +41,12 @@ jobs:
             cd previous
             git checkout master
             cd ..
-      
-      # - run:
-      #     name: "Get GCR credentials"
-      #     command: |
-      #       echo $TECHSTACK_EDITOR > /key.json
-      #       gcloud auth activate-service-account --key-file=/key.json
-      # - run: 
-      #     name: Ger Docker credentials
-      #     command: | 
-      #       gcloud auth configure-docker --project techstack-standard-industries
-      # - run: 
-      #     name: Pull cost estimator image
-      #     command: |
-      #       docker pull us.gcr.io/techstack-standard-industries/docker-repo/k8s-cost-estimator:v0.0.1
-      # - run:
-      #     name: Cost estimation 
-      #     command: |
-      #       set -e
 
-      #       echo ""
-      #       echo "*************************************************************************"
-      #       echo "** Checking out 'master' branch ..."
-      #       echo "*************************************************************************"
-      #       git config --global user.email "dmytro.pakki@standardindustries.com" && git config --global user.name "dpakki"
-      #       mkdir previous
-      #       git clone https://github.com/GITHUB_USER/k8s-cost-estimator-github.git previous/
-      #       cd previous
-      #       git checkout master
-      #       cd ..
-
-      #       echo ""
-      #       echo "*************************************************************************"
-      #       echo "** Estimating cost difference between current and previous versions..."
-      #       echo "*************************************************************************"
-      #       k8s-cost-estimator --k8s wordpress --k8s-prev previous/wordpress --output output.json --environ=GITHUB
+            echo ""
+            echo "*************************************************************************"
+            echo "** Estimating cost difference between current and previous versions..."
+            echo "*************************************************************************"
+            k8s-cost-estimator --k8s wordpress --k8s-prev previous/wordpress --output output.json --environ=GITHUB
 
           #   echo ""
           #   echo "***************************************************************************************************************"
