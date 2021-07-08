@@ -51,25 +51,26 @@ jobs:
             echo ""
             echo "***************************************************************************************************************"
             echo "** Updating Pull Request ${CIRCLE_PULL_REQUEST##*/} ..."
-            echo "***************************************************************************************************************" 
-          #   createObject() {
-          #     url=$$1
-          #     body=$$2
-          #     resp=$(curl -w "\nSTATUS_CODE:%{http_code}\n" -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: Bearer $_GITHUB_TOKEN" -d "$$body"  $$url)
-          #     httpStatusCode=$([[ $$resp =~ [[:space:]]*STATUS_CODE:([0-9]{3}) ]] && echo $${BASH_REMATCH[1]})
-          #     if [ $$httpStatusCode != "201" ] 
-          #       then
-          #         echo "Error creating object!"
-          #         echo "\- URL: $$url "
-          #         echo "\- BODY: $$body "
-          #         echo "\- RESPONSE: $$resp "
-          #         exit -1
-          #     fi
-          #   }
+            echo "***************************************************************************************************************"
+            export GITHUB_TOKEN=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
+            createObject() {
+              url=$$1
+              body=$$2
+              resp=$(curl -w "\nSTATUS_CODE:%{http_code}\n" -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: Bearer $GITHUB_TOKEN" -d "$$body"  $$url)
+              httpStatusCode=$([[ $$resp =~ [[:space:]]*STATUS_CODE:([0-9]{3}) ]] && echo $${BASH_REMATCH[1]})
+              if [ $$httpStatusCode != "201" ] 
+                then
+                  echo "Error creating object!"
+                  echo "\- URL: $$url "
+                  echo "\- BODY: $$body "
+                  echo "\- RESPONSE: $$resp "
+                  exit -1
+              fi
+            }
 
-          #   comments_url="https://api.github.com/repos/GITHUB_USER/k8s-cost-estimator-github/issues/$_PR_NUMBER/comments"
-          #   comments_body="$(cat output.json)"
-          #   createObject $$comments_url "$$comments_body"
+            comments_url="https://api.github.com/repos/dpakki/k8s-cost-estimator-github/issues/${CIRCLE_PULL_REQUEST##*/}/comments"
+            comments_body="$(cat output.json)"
+            createObject $$comments_url "$$comments_body"
 
           #   COST_USD_THRESHOLD=$_GITHUB_FINOPS_COST_USD_THRESHOLD
           #   POSSIBLY_COST_INCREASE=$(cat output.diff | jq ".summary.maxDiff.usd")
