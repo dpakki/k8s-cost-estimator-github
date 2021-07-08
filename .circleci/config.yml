@@ -15,7 +15,7 @@ workflows:
                 - dev
 jobs:
   cost_estimation:
-    # executor: gcloud/gcloud
+    # executor: gcloud/gcloud 
     docker:
       - image: dpakki95/k8s-cost-estimator:v0.0.1
         auth:
