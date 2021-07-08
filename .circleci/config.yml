@@ -67,9 +67,9 @@ jobs:
               fi
             }
 
-            # comments_url="https://api.github.com/repos/dpakki/k8s-cost-estimator-github/issues/${CIRCLE_PULL_REQUEST##*/}/comments"
-            # comments_body="$(cat output.json)"
-            # createObject $$comments_url "$$comments_body"
+            comments_url="https://api.github.com/repos/dpakki/k8s-cost-estimator-github/issues/${CIRCLE_PULL_REQUEST##*/}/comments"
+            comments_body="$(cat output.json)"
+            createObject $$comments_url "$$comments_body"
 
           #   COST_USD_THRESHOLD=$_GITHUB_FINOPS_COST_USD_THRESHOLD
           #   POSSIBLY_COST_INCREASE=$(cat output.diff | jq ".summary.maxDiff.usd")
