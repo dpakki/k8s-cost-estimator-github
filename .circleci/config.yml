@@ -25,7 +25,22 @@ jobs:
       - checkout
       - setup_remote_docker:
           version: 19.03.13
-      - run: k8s-cost-estimator
+      
+      - run:
+          name: Cost estimation 
+          command: |
+            set -e
+
+            echo ""
+            echo "*************************************************************************"
+            echo "** Checking out 'master' branch ..."
+            echo "*************************************************************************"
+            git config --global user.email "dmytro.pakki@standardindustries.com" && git config --global user.name "dpakki"
+            mkdir previous
+            git clone https://github.com/GITHUB_USER/k8s-cost-estimator-github.git previous/
+            cd previous
+            git checkout master
+            cd ..
       
       # - run:
       #     name: "Get GCR credentials"
