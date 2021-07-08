@@ -59,16 +59,16 @@ jobs:
               echo $url
               echo $body
               echo "Request Start"
-              resp=$(curl -w "\nSTATUS_CODE:%{http_code}\n" -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: Bearer $GITHUB_TOKEN" -d "$$body"  $$url)
-              echo $$resp
+              resp=$(curl -w "\nSTATUS_CODE:%{http_code}\n" -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: Bearer $GITHUB_TOKEN" -d "$body"  $url)
+              echo $resp
               
-              httpStatusCode=$([[ $$resp =~ [[:space:]]*STATUS_CODE:([0-9]{3}) ]] && echo $${BASH_REMATCH[1]})
+              httpStatusCode=$([[ $resp =~ [[:space:]]*STATUS_CODE:([0-9]{3}) ]] && echo ${BASH_REMATCH[1]})
               if [ $$httpStatusCode != "201" ] 
                 then
                   echo "Error creating object!"
-                  echo "\- URL: $$url "
-                  echo "\- BODY: $$body "
-                  echo "\- RESPONSE: $$resp "
+                  echo "\- URL: $url "
+                  echo "\- BODY: $body "
+                  echo "\- RESPONSE: $resp "
                   exit -1
               fi
             }
