@@ -17,7 +17,7 @@ jobs:
   cost_estimation:
     # executor: gcloud/gcloud 
     docker:
-      - image: dpakki95/k8s-cost-estimator:v0.0.1
+      - image: dpakki95/k8s-cost-estimator:v0.0.2
         auth:
           username: dpakki95
           password: 7JN63r6TNpcm2heT  # context / project UI env-var reference
@@ -25,28 +25,34 @@ jobs:
       - checkout
       - setup_remote_docker:
           version: 19.03.13
-      
+
       - run:
-          name: Cost estimation 
+          name: "Get GCR credentials"
           command: |
-            set -e
+            echo $TECHSTACK_EDITOR > /key.json
+            gcloud auth activate-service-account --key-file=/key.json
+      
+      # - run:
+      #     name: Cost estimation 
+      #     command: |
+      #       set -e
 
-            echo ""
-            echo "*************************************************************************"
-            echo "** Checking out 'master' branch ..."
-            echo "*************************************************************************"
-            git config --global user.email "dmytro.pakki@standardindustries.com" && git config --global user.name "dpakki"
-            mkdir previous
-            git clone https://github.com/dpakki/k8s-cost-estimator-github.git previous/
-            cd previous
-            git checkout master
-            cd ..
+      #       echo ""
+      #       echo "*************************************************************************"
+      #       echo "** Checking out 'master' branch ..."
+      #       echo "*************************************************************************"
+      #       git config --global user.email "dmytro.pakki@standardindustries.com" && git config --global user.name "dpakki"
+      #       mkdir previous
+      #       git clone https://github.com/dpakki/k8s-cost-estimator-github.git previous/
+      #       cd previous
+      #       git checkout master
+      #       cd ..
 
-            echo ""
-            echo "*************************************************************************"
-            echo "** Estimating cost difference between current and previous versions..."
-            echo "*************************************************************************"
-            k8s-cost-estimator --k8s wordpress --k8s-prev previous/wordpress --output output.json --environ=GITHUB
+      #       echo ""
+      #       echo "*************************************************************************"
+      #       echo "** Estimating cost difference between current and previous versions..."
+      #       echo "*************************************************************************"
+      #       k8s-cost-estimator --k8s wordpress --k8s-prev previous/wordpress --output output.json --environ=GITHUB
 
           #   echo ""
           #   echo "***************************************************************************************************************"
