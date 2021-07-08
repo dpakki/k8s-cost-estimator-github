@@ -29,8 +29,8 @@ jobs:
       - run:
           name: "Get GCR credentials"
           command: |
-            echo $TECHSTACK_EDITOR > /key.json
-            gcloud auth activate-service-account --key-file=/key.json
+            echo $TECHSTACK_EDITOR > /sa-key.json
+            gcloud auth activate-service-account --key-file=/sa-key.json
       
       - run:
           name: Cost estimation 
@@ -52,7 +52,7 @@ jobs:
             echo "*************************************************************************"
             echo "** Estimating cost difference between current and previous versions..."
             echo "*************************************************************************"
-            k8s-cost-estimator --k8s wordpress --k8s-prev previous/wordpress --output output.json --environ=GITHUB
+            k8s-cost-estimator --k8s wordpress --k8s-prev previous/wordpress --output output.json --environ=GITHUB --auth-key sa-key.json
 
           #   echo ""
           #   echo "***************************************************************************************************************"
