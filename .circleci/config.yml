@@ -23,20 +23,16 @@ jobs:
           password: 7JN63r6TNpcm2heT  # context / project UI env-var reference
     steps:
       - checkout
-      - setup_remote_docker:
-          version: 19.03.13
+      # - setup_remote_docker:
+      #     version: 19.03.13
 
-      - run:
-          name: "Get GCR credentials"
-          command: |
-            echo $TECHSTACK_EDITOR > /sa-key.json
-            gcloud auth activate-service-account --key-file=/sa-key.json
-      
       - run:
           name: Cost estimation 
           command: |
             set -e
 
+            # Donload manifests from the repo into 'previous' folder. Checkot in master branch because  
+            # at the current moment the latest code is in master. 
             echo ""
             echo "*************************************************************************"
             echo "** Checking out 'master' branch ..."
@@ -48,6 +44,7 @@ jobs:
             git checkout master
             cd ..
 
+            # Compare the code from 'prvious' folder with the current one. --k8s - where manifests are situated
             echo ""
             echo "*************************************************************************"
             echo "** Estimating cost difference between current and previous versions..."
