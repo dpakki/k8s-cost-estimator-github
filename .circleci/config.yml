@@ -37,7 +37,7 @@ jobs:
             echo "*************************************************************************"
             git config --global user.email "dmytro.pakki@standardindustries.com" && git config --global user.name "dpakki"
             mkdir previous
-            git clone https://github.com/GITHUB_USER/k8s-cost-estimator-github.git previous/
+            git clone https://github.com/dpakki/k8s-cost-estimator-github.git previous/
             cd previous
             git checkout master
             cd ..
