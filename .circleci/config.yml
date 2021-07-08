@@ -16,10 +16,10 @@ workflows:
 jobs:
   cost_estimation:
     docker:
-      - image: dpakki95/k8s-cost-estimator:v0.0.2
+      - image: $USERNAME/k8s-cost-estimator:v0.0.2
         auth:
-          username: dpakki95
-          password: 7JN63r6TNpcm2heT
+          username: $USERNAME
+          password: $PASSWORD
     steps:
       - checkout
       - run:
@@ -52,7 +52,6 @@ jobs:
             echo "***************************************************************************************************************"
             echo "** Updating Pull Request ${CIRCLE_PULL_REQUEST##*/} ..."
             echo "***************************************************************************************************************"
-            export GITHUB_TOKEN=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
             createObject() {
               url=$$1
               body=$$2
